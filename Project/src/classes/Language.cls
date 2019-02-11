@@ -77,4 +77,3 @@ public class Language {
         public Double probability {get;set;}
     }
 }
-
