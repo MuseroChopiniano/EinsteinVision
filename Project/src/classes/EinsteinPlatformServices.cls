@@ -25,5 +25,39 @@ public class EinsteinPlatformServices{
         return access_token;
     }
 
-    
+    public Dataset__c createDataset(string urlImage){
+        Dataset__c aDataset = new Dataset__C();
+        HttpRequest req = new HttpRequest();
+        req.setMethod('POST');
+        req.setHeader('Authorization','Bearer ' + getAccessToken());
+        req.setHeader('Cache-Control','no-cache');
+        req.setHeader('Content-Type','multipart/form-data');
+
+        string contentType = HttpFormBuilder.GetContentType();
+        //  Compose the form
+        string form64 = '';
+
+        form64 += HttpFormBuilder.WriteBoundary();
+        form64 += HttpFormBuilder.WriteBodyParameter('type', 'image');
+        form64 += HttpFormBuilder.WriteBoundary();
+        form64 += HttpFormBuilder.WriteBodyParameter('path', urlImage);
+        form64 += HttpFormBuilder.WriteBoundary(HttpFormBuilder.EndingType.CrLf);
+
+        blob formBlob = EncodingUtil.base64Decode(form64);
+        req.setBodyAsBlob(formBlob);
+
+        Http http = new Http();
+        HttpResponse response = http.send(req);
+        if(response.getStatusCode() == 200){
+            aDataset = (Dataset__c) json.deserialize(response.getBody(),Dataset__c.class);
+        }
+        return aDataset;
+        /*
+        CUrl command
+        curl -X POST -H "Authorization: Bearer <TOKEN>" 
+        -H "Cache-Control: no-cache" -H "Content-Type: multipart/form-data" 
+        -F "type=image" -F "path=http://einstein.ai/images/mountainvsbeach.zip" 
+        https://api.einstein.ai/v2/vision/datasets/upload/sync
+        */
+    }
 }
