@@ -32,7 +32,7 @@ public class EinsteinPlatformServices{
         req.setHeader('Authorization','Bearer ' + getAccessToken());
         req.setHeader('Cache-Control','no-cache');
         req.setHeader('Content-Type','multipart/form-data');
-
+        req.setEndpoint('callout:EinsteinToken');
         string contentType = HttpFormBuilder.GetContentType();
         //  Compose the form
         string form64 = '';
