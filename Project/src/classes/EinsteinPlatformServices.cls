@@ -21,7 +21,7 @@ public class EinsteinPlatformServices{
         jwt.sub = 'suarez.gastonalejandro@gmail.com';
         jwt.aud = 'https://api.einstein.ai/v2/oauth2/token';
         jwt.exp = '3600';
-        String access_token = JWTBearerFlow.getAccessToken('https://api.einstein.ai/v2/oauth2/token', jwt);
+        String access_token = JWTBearerFlow.getAccessToken( jwt);
         return access_token;
     }
 
