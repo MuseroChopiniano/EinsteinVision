@@ -6,23 +6,27 @@
     </types>
     <types>
         <members>*</members>
-        <name>ApexPage</name>
-    </types>
-    <types>
-        <members>*</members>
         <name>ApexTrigger</name>
     </types>
     <types>
         <members>*</members>
         <members>Account</members>
         <members>Case</members>
-        <members>Contact</members>
         <members>Opportunity</members>
+        <members>Contact</members>
         <name>CustomObject</name>
     </types>
     <types>
         <members>*</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>*</members>
         <name>StaticResource</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>ApexPage</name>
     </types>
     <version>44.0</version>
 </Package>
